@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: Melissa
+Build-Jdk: 11.0.7
+Implementation-Title: project_spring
+Implementation-Version: 1.0-SNAPSHOT
+Implementation-Vendor-Id: org.example
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/project_spring
+Created-By: Maven Integration for Eclipse
+
