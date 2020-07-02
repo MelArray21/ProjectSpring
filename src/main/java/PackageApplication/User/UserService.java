@@ -14,12 +14,23 @@ public class UserService {
 
 
     public List<UserJava> getAllUser() {
+
         return userrepository.findAll();
     }
 
+
+
+
     public UserJava insertUser(UserJava user) {
+        UserJava userinsert = userrepository.findByUsername(user.getUsername());
+        if (userinsert!=null) {
+           return null;
+        }else
+
         return userrepository.save(user);
     }
+
+
 
     public UserJava login(String username, String password) {
         return userrepository.findByUsernameAndPsw(username, password);

@@ -26,7 +26,7 @@ private UserRepository userrepository;
 
 
     @GetMapping("/users")
-    public ResponseEntity< List<UserJava> >GetAllUsers (){
+    public ResponseEntity< List<UserJava>  >GetAllUsers (){
         return ResponseEntity.ok(userservice.getAllUser());
 
 
@@ -35,8 +35,12 @@ private UserRepository userrepository;
 
     @PostMapping(value = "/insertuser", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity <UserJava> insertUser (@RequestBody UserJava user) throws NoSuchAlgorithmException {
-    user.setPsw(Crypto.toHexString(Crypto.getSHA( user.getPsw())));
-    return ResponseEntity.ok(userservice.insertUser(user));
+        user.setPsw(Crypto.toHexString(Crypto.getSHA(user.getPsw())));
+        UserJava userok = userservice.insertUser(user);
+        if (userok == null) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
+        }
+        return ResponseEntity.ok(userok);
 
     }
 
